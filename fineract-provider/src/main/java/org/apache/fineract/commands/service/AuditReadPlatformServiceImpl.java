@@ -21,17 +21,14 @@ package org.apache.fineract.commands.service;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import customers.GetCustomers;
+import io.github.kayr.ezyquery.EzySql;
 import java.lang.reflect.Type;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -94,6 +91,7 @@ public class AuditReadPlatformServiceImpl implements AuditReadPlatformService {
     private final SavingsProductReadPlatformService savingsProductReadPlatformService;
     private final DepositProductReadPlatformService depositProductReadPlatformService;
     private final ColumnValidator columnValidator;
+    private final EzySql ezySql;
 
     private static final class AuditMapper implements RowMapper<AuditData> {
 
@@ -170,6 +168,7 @@ public class AuditReadPlatformServiceImpl implements AuditReadPlatformService {
 
     @Override
     public Collection<AuditData> retrieveAuditEntries(final SQLBuilder extraCriteria, final boolean includeJson) {
+        ezySql.from(GetCustomers.QUERY).where(GetCustomers.CUSTOMER_EMAIL.eq("JDjsd")).listAndCount();
         return retrieveEntries("audit", extraCriteria, " order by aud.id DESC limit " + PaginationParameters.getCheckedLimit(null),
                 includeJson);
     }

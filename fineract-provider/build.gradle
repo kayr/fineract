@@ -16,7 +16,19 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+}
+
+plugins {
+    id 'io.github.kayr.gradle.ezyquery' version '0.0.7'
+}
 description = 'Fineract Provider'
+
+
 
 apply plugin: 'org.zeroturnaround.gradle.jrebel'
 apply plugin: 'java'
@@ -26,6 +38,7 @@ apply plugin: 'com.gorylenko.gradle-git-properties'
 apply plugin: 'io.swagger.core.v3.swagger-gradle-plugin'
 apply plugin: 'com.google.cloud.tools.jib'
 apply plugin: 'org.springframework.boot'
+
 
 check.dependsOn('cucumber')
 
