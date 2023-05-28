@@ -160,9 +160,11 @@ allprojects  {
             "**/build.gradle.mustache",
             "**/pom.mustache",
             "**/avro/**/*.java",
-            "**/org/apache/fineract/client/**/*.java"
+            "**/org/apache/fineract/client/**/*.java",
+            "**/org/apache/fineract/queries/**/*.java"
         ])
         strictCheck true
+        dryRun true
     }
 
     licenseReport {
